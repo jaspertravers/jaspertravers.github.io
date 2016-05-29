@@ -36,7 +36,7 @@ function setup() {
    /* fills 'arraylist' */
    for (var i = 0; i < count; i++) {
       //agents.push (new Agent(center.x, center.y));
-      agents.push (new Agent(Math.floor(random (20, width - 20)) , Math.floor(random (20, height - 20))));
+      agents.push (new Agent(Math.floor(random (200, width - 200)) , Math.floor(random (200, height - 200))));
    }
    /* one agent test */
 
