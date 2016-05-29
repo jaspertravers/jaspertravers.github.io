@@ -19,11 +19,11 @@ function setup() {
 
    center = createVector (width / 2, height / 2);
 
-   frameRate (960); /* change this to make it faster */
+   frameRate (240); /* change this to make it faster */
    /* 60, 120, 240, 480, 960, 1920 */
 
    stepSize = 4; /* distance between centers of circles */
-   diameter = 4; /* diameter of circles */
+   diameter = 20; /* diameter of circles */
 
    fillVal = 255; /* alpha */
    col = 200; /* initial rgb values */
