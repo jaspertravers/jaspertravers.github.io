@@ -23,12 +23,14 @@ function setup() {
    /* 60, 120, 240, 480, 960, 1920 */
 
    stepSize = 4; /* distance between centers of circles */
-   diameter = 4; /* diameter of circles */
+   diameter = 6; /* diameter of circles */
+   /* stepSize: 4, diameter: 4, fillVal: 255, count: 20 */
+   /* stepSize: 4, diameter: 6, fillVal: 40, count: 200 */
 
-   fillVal = 255; /* alpha */
+   fillVal = 40; /* alpha */
    col = 200; /* initial rgb values */
 
-   count = 20; /* number of agents */
+   count = 200; /* number of agents */
 
    noStroke();
    //stroke (0, 100);
