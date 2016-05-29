@@ -22,8 +22,8 @@ function setup() {
    frameRate (240); /* change this to make it faster */
    /* 60, 120, 240, 480, 960, 1920 */
 
-   stepSize = 4; /* distance between centers of circles */
-   diameter = 20; /* diameter of circles */
+   stepSize = 10; /* distance between centers of circles */
+   diameter = 10; /* diameter of circles */
 
    fillVal = 255; /* alpha */
    col = 200; /* initial rgb values */
