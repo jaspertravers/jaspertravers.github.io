@@ -1,0 +1,66 @@
+html{
+    overflow-y: hidden;
+    background-color: whitesmoke;
+}
+
+#list_div{
+    margin-top: 10vh;
+    width: 15vw;
+    height: 100vh;
+    float: left;
+}
+
+.list{
+    list-style: none;
+}
+
+li:active, li:hover {
+  cursor: pointer;
+}
+
+li{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    margin-bottom: .5vh;
+    margin-top: .75vh;
+}
+
+.litem { 
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+#Project1Container{
+
+}
+
+#ontheleft{
+    margin-top:10vh;
+    overflow: scroll;
+    width: calc(80vw - 300px);
+    
+}
+#ontheright{
+    overflow-y: scroll;
+    width: 300px;
+    height:100vh;
+    position: absolute;
+    right: 0vw;
+    top: 0;
+}
+
+#Project1Container, #HomeContainer{
+    width: 81vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 15vw;
+    margin-left: 4vw;
+
+}
