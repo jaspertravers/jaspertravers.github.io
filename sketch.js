@@ -15,7 +15,7 @@
 function setup() {
 
    createCanvas (640,640);
-   background (0);
+   background (245,245,245);
 
    center = createVector (width / 2, height / 2);
 
