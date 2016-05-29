@@ -1,8 +1,8 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 
-var home_selected = true;
-var project_selected = false;
+var home_selected = false;
+var project_selected = true;
 
 function main() {
     "use strict";
@@ -57,7 +57,7 @@ function main() {
 
 $(document).ready(function () {
     "use strict";
-    $('#Project1Container').hide();
-    $('#Home').css("background-color", "darkgray");
+    $('#HomeContainer').hide();
+    $('#Project1').css("background-color", "darkgray");
     main();
 });
