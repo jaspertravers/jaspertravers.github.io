@@ -7,9 +7,9 @@
    var center;
 
    var count;
-   var agents;
+   var agents = [];
 
-   var agentTest;
+   //var agentTest;
 
 
 function setup() {
@@ -19,7 +19,8 @@ function setup() {
 
    center = createVector (width / 2, height / 2);
 
-   frameRate (120); /* change this to make it faster */
+   frameRate (960); /* change this to make it faster */
+   /* 60, 120, 240, 480, 960, 1920 */
 
    stepSize = 4; /* distance between centers of circles */
    diameter = 4; /* diameter of circles */
@@ -32,28 +33,23 @@ function setup() {
    noStroke();
    //stroke (0, 100);
 
-   agents = []; /* arraylist of agents */
-
    /* fills 'arraylist' */
-/*
    for (var i = 0; i < count; i++) {
-      agents.push(new Agent(center.x, center.y);
+      agents.push (new Agent(center.x, center.y));
    }
-*/
    /* one agent test */
 
-   agentTest = new Agent (center.x, center.y);
-
+   //agentTest = new Agent (center.x, center.y);
    
 }
 
 function draw() {
-/*
+
   for (var j = 0; j < count; j++) {
    agents[j].step();
   }
-*/
-  agentTest.step();
+
+  //agentTest.step();
 
 }
 
