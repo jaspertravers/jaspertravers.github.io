@@ -42,12 +42,13 @@ li{
 }
 
 #agentFrame{
-    height: 640px;
-    width:640px;
+    height: 100%;
+    width: 100%;
     border: none;
 }
 
 #ontheleft{
+    align-content: center;
     margin-top:10vh;
     overflow: scroll;
     width: calc(80vw - 300px);
