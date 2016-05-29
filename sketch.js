@@ -60,9 +60,9 @@ function Agent (x, y) {
    var posX = x;
    var posY = y;
 
-   var red = 200;
-   var green = 100;
-   var blue = 50;
+   var red = Math.floor (random (0, 255));
+   var green = Math.floor (random (0, 255));
+   var blue = Math.floor (random (0, 255));
 
    var incMax = 3;
 
