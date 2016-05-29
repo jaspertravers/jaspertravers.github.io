@@ -49,7 +49,6 @@ li{
 
 #ontheleft{
     align-content: center;
-    margin-top:10vh;
     overflow: scroll;
     width: calc(80vw - 300px);
     

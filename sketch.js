@@ -22,13 +22,13 @@ function setup() {
    frameRate (240); /* change this to make it faster */
    /* 60, 120, 240, 480, 960, 1920 */
 
-   stepSize = 10; /* distance between centers of circles */
-   diameter = 10; /* diameter of circles */
+   stepSize = 4; /* distance between centers of circles */
+   diameter = 4; /* diameter of circles */
 
    fillVal = 255; /* alpha */
    col = 200; /* initial rgb values */
 
-   count = 2; /* number of agents */
+   count = 20; /* number of agents */
 
    noStroke();
    //stroke (0, 100);
