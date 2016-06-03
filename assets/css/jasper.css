@@ -37,6 +37,22 @@ li{
     padding-bottom: 1vh;
 }
 
+#Project2Container{
+    
+}
+
+#fullDiv{
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+#draggableCubes{
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
 #Project1Container{
 
 }
@@ -62,7 +78,7 @@ li{
     top: 0;
 }
 
-#Project1Container, #HomeContainer{
+#Project1Container, #Project2Container, #HomeContainer{
     width: 81vw;
     height: 100vh;
     position: absolute;
