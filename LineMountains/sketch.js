@@ -25,9 +25,9 @@ function setup() {
   jumpSlider = createSlider (1, 50, 3, 1);
   pointOffsetSlider = createSlider (1, 20, 5, 1);
 //position
-  stepSlider.position (10, 10);
-  jumpSlider.position (10, 50);
-  pointOffsetSlider.position (10, 90);
+  stepSlider.position (100, 10);
+  jumpSlider.position (100, 50);
+  pointOffsetSlider.position (100, 90);
 //style
   stepSlider.style('width', '200px');
   jumpSlider.style('width', '200px');
