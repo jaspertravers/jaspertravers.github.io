@@ -4,6 +4,11 @@ var jump = 3;
 var source;
 var winWidth;
 var winHeight;
+var pointOffset = 5;
+
+var stepSlider;
+var jumpSlider;
+var pointOffsetSlider;
 
 function setup() {
 
@@ -15,10 +20,30 @@ function setup() {
   stroke(0);
 
   source = new Node (winWidth, winHeight / 2.0);
+//creation
+  stepSlider = createSlider (1, 10, 1, 1);
+  jumpSlider = createSlider (1, 50, 3, 1);
+  pointOffsetSlider = createSlider (1, 20, 5, 1);
+//position
+  stepSlider.position (10, 10);
+  jumpSlider.position (10, 50);
+  pointOffsetSlider.position (10, 90);
+//style
+  stepSlider.style('width', '200px');
+  jumpSlider.style('width', '200px');
+  pointOffsetSlider.style('width', '200px');
+
 
 }
 
 function draw() {
+
+//sliders
+
+  step = stepSlider.value();
+  jump = jumpSlider.value();
+  pointOffset = pointOffsetSlider.value();
+
   background (255);
   //rect (0,0,winWidth - 2, winHeight - 2);
 
@@ -26,9 +51,9 @@ function draw() {
 
   source.move();
 
-  for (var i = 0; i < nodes.length - 5; i++) {
+  for (var i = 0; i < nodes.length - pointOffset; i++) {
 
-    nodes[i].display (nodes[i + 5]);
+    nodes[i].display (nodes[i + pointOffset]);
     nodes[i].decrement (step);
 
     if (nodes[i].x < 0) {
