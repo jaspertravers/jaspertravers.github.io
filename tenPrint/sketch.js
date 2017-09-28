@@ -5,8 +5,8 @@ var y = 0;
 var lineLen = 12;
 
 function setup() {
-  //createCanvas (window.innerWidth, window.innerHeight);
-  createCanvas (640, 640);
+  createCanvas (window.innerWidth, window.innerHeight);
+  //createCanvas (640, 640);
   background (0);
   stroke (255);
 }
@@ -32,8 +32,4 @@ function draw() {
     x = 0;
     y += spacing;
   }
-}
-
-function wobble () {
-  return random (0);
 }
