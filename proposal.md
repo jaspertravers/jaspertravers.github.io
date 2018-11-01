@@ -9,10 +9,10 @@ So, goals:
 2. Bring the power of a computer into writing at a very, very controlled and non-intrusive rate
 
 If you look at the left pane in the little 30s video on this [page](https://lepisma.github.io/2017/10/28/ricing-org-mode/index.html) you get a sense of the beauty of writing in emacs orgmode (specifically this bloggers personal "White Room" layer called Rogue. Links:
-[emacs](https://www.gnu.org/software/emacs/)
-[org mode](https://orgmode.org/)
-[spacemacs](http://spacemacs.org/)
-[Rogue](https://lepisma.github.io/2017/10/28/ricing-org-mode/index.html)
+- [emacs](https://www.gnu.org/software/emacs/)
+- [org mode](https://orgmode.org/)
+- [spacemacs](http://spacemacs.org/)
+- [Rogue](https://lepisma.github.io/2017/10/28/ricing-org-mode/index.html)
 
 There are a few things to go through here. My target output product would be a piece of software + a guide to go alongside + the philosophy of computing.
 The software would be emacs < spacemacs < org mode < Rogue layer; meaning, I would really just be shipping a preconfigured emacs package. And it would be -- specifically -- the Rogue layer on top of org mode on top of the spacemacs configuration package on top of emacs. Or, as above, emacs < spacemacs < org mode < Rogue layer. 
@@ -20,12 +20,12 @@ Last thing towards the first goal of beautiful: WhiteRoom is an old MacOS applic
 
 Part 2, the more interesting part. And we'd only ever get there if part 1 was done successfully (imo, would be an interesting conversation though). Part 2 is bringing programming, plain text manipulation and computability, etc. to non-programmers. My primary user here is my younger brother Ben, who is a sociology major in Portland right now. Would he use this setup? Why? What would he want it to do? Links again:
 
-[Emacs for Writers](https://www.youtube.com/watch?v=FtieBc3KptU&t=3016s)
-  Talk by a non-programmer who uses emacs org mode for writing.
-[2008 Google Tech Talk on Org mode](https://www.youtube.com/watch?v=oJTwQvgfgMM)
-  The author of the package and some of the incredible things it simplified about writing things in plaintext.
-[Keyboarding](https://lepisma.github.io/2017/08/25/keyboard/index.html)
-  The point of being good at/using keyboards. tl;dr it has NOTHING to do with speed. Everything to do with communication with the computer. (a fat breath of fresh air after so many hn and reddit comment sections recommending vim because it's "faster")
+- [Emacs for Writers](https://www.youtube.com/watch?v=FtieBc3KptU&t=3016s)
+>  Talk by a non-programmer who uses emacs org mode for writing.
+- [2008 Google Tech Talk on Org mode](https://www.youtube.com/watch?v=oJTwQvgfgMM)
+>  The author of the package and some of the incredible things it simplified about writing things in plaintext.
+- [Keyboarding](https://lepisma.github.io/2017/08/25/keyboard/index.html)
+> The point of being good at/using keyboards. tl;dr it has NOTHING to do with speed. Everything to do with communication with the computer. (a fat breath of fresh air after so many hn and reddit comment sections recommending vim because it's "faster")
 
 Some ideas I've had about why one might want a programming environment such as emacs instead of word or googledocs for writing
 - Folding sections of text (making them hidden, but not gone)
