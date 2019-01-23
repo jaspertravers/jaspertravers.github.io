@@ -13,11 +13,16 @@ Think this kind of visualization, but maybe more fine areas. Like how political 
 
 http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922
 
+---
+
+Ariel:
+
 Got a little idea for you, would be fun to think about. Especially in the context of the Design Lab's focus on "Socio Technical systems" so much as of late (I know that's been the long-term theme, but I hadn't given it much thought until recently)
+
 
 Responses:
   - let photo albums be the data input. People could just upload the photos from their trip and gps data could be extracted from each photo and a string between those points would likely be a good quick and easy aproximation of the trip locations.
 
 ---
 
-Map pinboard of destination goals
+Map pinboard of destination
