@@ -52,7 +52,7 @@
 
 ## Lisp in itself
 
-```lisp
+```
 evalquote[fn;x] = apply[fn;x;NIL]
 
 where
