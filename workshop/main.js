@@ -18,6 +18,16 @@ function createBlock(value, position, size) {
     block.style.background = `#fffbf4`;
     block.style.border = `1px dashed #282828`;
 
+    const textbox = document.createElement("textarea");
+    textbox.setAttribute("id", `${value}-text`);
+    textbox.innerHTML = "edit me";
+    textbox.style.width = "95%";
+    textbox.style.height = "50%";
+
+    //textbox.contentEditable = "true";
+
+    block.appendChild(textbox);
+
     return block;
 }
 
@@ -140,7 +150,7 @@ function onLoad() {
 
     createBackground(); //create canvas
 
-    let top = 100; let left = 150;
+    let top = 100; let left = 250;
     let width = 300; let height = 200;
     let block = createBlock ("value", {top, left}, {width, height});
 
