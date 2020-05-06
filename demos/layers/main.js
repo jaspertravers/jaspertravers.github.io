@@ -1,19 +1,12 @@
 //
-// includes
+// globals
 //
+let currentPosition;
+let vpblockMove = false;
+let canvas;
+let vpblock;
 
-
-
-
-//
-//  globals
-//
-
-const STEP = 24;
-const pts = []; //test
-
-const state = {};
-
+let dragged = false;
 //
 //  run
 // 
@@ -50,42 +43,36 @@ function bootstrap () {
     part.style.width = `${width}px`;
     part.style.height = `${height}px`;
 
-    let controller = document.createElement("div");
-    controller.classList.add("controller");
-    controller.style.top = `0px`;
-    controller.style.left = `0px`;
-    controller.style.width = `${width - 1}px`;
-    controller.style.height = `${STEP + 1}px`;
-    controller.style.background = "#ffffff"
-    controller.style.borderBottom = "1px dotted #282828";
+    //
+    // viewport block
+    //
 
-    let controllerState = document.createElement("div");
-    controllerState.classList.add("controllerState");
-    // controllerState.style.top = `0px`;
-    // controllerState.style.left = `0px`;
-    controllerState.style.width = "100%";
-    controllerState.style.height = "100%";
-    controllerState.style.display = "flex";
+    //let vpblock = document.createElement("div"); //added temp var at top
+    vpblock = document.createElement("div");
+    vpblock.classList.add("vpblock");
 
-    let labels = ["Part", "Draw"];
-    let elements = [];
+  vpblock.addEventListener("click", (e) => {
+    if (!dragged) {
+      //console.log(e); //first click doesnt work, all rest do
+      vpblockMove = !vpblockMove
+      vpblock.style.border = vpblockMove ? "black dashed 1px" : "red solid 1px";
+    }
+  });
 
-    labels.forEach ((e, i) => {
-        elements[i] = document.createElement("button");
-        elements[i].style.width = "100px";
-        elements[i].style.verticalAlign = "middle";
-        elements[i].style.textAligh = "center";
-        elements[i].style.height = "100%";
-        elements[i].innerHTML = labels[i];
-        controllerState.appendChild(elements[i])
-    });
+    vpblock.style.top = "200px";
+    vpblock.style.left = "100px";
+    vpblock.style.width = "200px";
+    vpblock.style.height = "200px";
+    vpblock.style.background = "#ffffff";
+    vpblock.style.border = "dashed 1px";
 
-    let currentState = document.createElement("div");
+    //
+    // canvas
+    //
 
-    controllerState.appendChild(currentState);
-    controller.appendChild(controllerState);
-
-    let canvas = document.createElement("canvas");
+    //let canvas = document.createElement("canvas"); //added temp var at top
+    canvas = document.createElement("canvas");
+    canvas.style.border = "solid 1px"
     canvas.setAttribute("id", "canvas");
     canvas.classList.add("canvas");
 
@@ -97,6 +84,7 @@ function bootstrap () {
     context.fillStyle = "#E5E5E5";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
+  let STEP = 24;
     for (let x = STEP; x < width - STEP + 2; x += STEP) { //this magic 2 is slightly confusing
         for (let y = STEP; y < height - STEP; y += STEP) {
             context.fillStyle = "#282828";
@@ -108,7 +96,7 @@ function bootstrap () {
     // bootstrap
     //
     part.appendChild(canvas);
-    part.appendChild(controller);
+    part.appendChild(vpblock);
     main.appendChild(part);
     document.body.appendChild(main);
     document.body.style.overflow = "hidden"; //index cards don't scroll
@@ -117,15 +105,15 @@ function bootstrap () {
 }
 
 function onMouseDown (evt) {
-    console.log(evt);
+    //console.log(evt);
     //
     //  switch
     //
-    if (state.mouseState === "part") {
-        handlePartDown(evt);
-    }
-    if (evt.target.classList[0] == "canvas" && state.mouseState === "canvas") {
+    if (evt.target.classList[0] == "canvas") {
         handleCanvasDown(evt);
+    }
+    if (evt.target.classList[0] == "vpblock") {
+        handlevpblockDown(evt);
     }
 }
 
@@ -163,33 +151,49 @@ function constrain (evt) {
     return {x, y};
 }
 function handleCanvasDown(evt) {
-    pts.push(constrain(evt));
-    pts.target = evt.target;
+    currentPosition = {x: evt.clientX, y: evt.clientY}
+
     document.addEventListener ("mousemove", handleCanvasMove);
     document.addEventListener ("mouseup", handleCanvasUp);
 }
 function handleCanvasMove(evt) {
-    pts.push(constrain(evt));
-    canvasRender(pts, pts.target);
+    let target = evt.target;
+    //console.log(target);
+
+    canvas.style.top = `${canvas.offsetTop - (currentPosition.y - event.clientY)}px`;
+    canvas.style.left = `${canvas.offsetLeft - (currentPosition.x - event.clientX)}px`;
+
+  if(vpblockMove) {
+    vpblock.style.top = `${vpblock.offsetTop - (currentPosition.y - event.clientY)}px`;
+    vpblock.style.left = `${vpblock.offsetLeft - (currentPosition.x - event.clientX)}px`;
+  }
+
+    currentPosition = {x: event.clientX, y: event.clientY}
+
 }
 function handleCanvasUp (evt) {
-    pts.push(null);
-    canvasRender(pts, evt.target);
     document.removeEventListener ("mousemove", handleCanvasMove);
     document.removeEventListener ("mouseup", handleCanvasUp);
 }
 
-function canvasRender (pts, target) {
-    const ctx = target.getContext("2d");
-    ctx.strokeStyle = "#282828";
-    for (let index = 1; index < pts.length - 1; index++) {
-        if (pts[index - 1] == null) continue;
-        if (pts[index] == null) continue;
-        let p1 = pts[index - 1];
-        let p2 = pts[index];
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-    }
+// vpblock handles
+
+function handlevpblockDown(evt) {
+  currentPosition = {x: evt.clientX, y: evt.clientY}
+  dragged = false;
+
+  document.addEventListener ("mousemove", handlevpblockMove);
+  document.addEventListener ("mouseup", handlevpblockUp);
+}
+
+function handlevpblockMove(evt) {
+  dragged = true;
+  vpblock.style.top = `${vpblock.offsetTop - (currentPosition.y - event.clientY)}px`;
+  vpblock.style.left = `${vpblock.offsetLeft - (currentPosition.x - event.clientX)}px`;
+
+  currentPosition = {x: event.clientX, y: event.clientY}
+}
+function handlevpblockUp(evt) {
+  document.removeEventListener ("mousemove", handlevpblockMove);
+  document.removeEventListener ("mouseup", handlevpblockUp);
 }
