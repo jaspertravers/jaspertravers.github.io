@@ -40,8 +40,8 @@ function bootstrap () {
 
     part.style.top = `0px`;
     part.style.left = `0px`;
-    part.style.width = `${width}px`;
-    part.style.height = `${height}px`;
+    part.style.width = `800px`;
+    part.style.height = `800px`;
 
     //
     // viewport block
@@ -76,8 +76,8 @@ function bootstrap () {
     canvas.setAttribute("id", "canvas");
     canvas.classList.add("canvas");
 
-    canvas.setAttribute("width", width);
-    canvas.setAttribute("height", height);
+    canvas.setAttribute("width", 800);
+    canvas.setAttribute("height", 800);
 
     const context = canvas.getContext("2d");
 
