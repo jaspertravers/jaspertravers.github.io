@@ -122,26 +122,21 @@ function handlePartMove (evt) {
     let dy = currentPosition.y - partPosition.y;
 
     let set = (w, h, l, t) => {
-        if (w) newpart.style.width = `${w}px`;
-        if (h) newpart.style.height = `${h}px`;
-        if (l) newpart.style.left = `${l + partPosition.x}px`;
-        if (t) newpart.style.top = `${t + partPosition.y}px`;
+        newpart.style.width = `${w}px`;
+        newpart.style.height = `${h}px`;
+        newpart.style.left = `${l + partPosition.x}px`;
+        newpart.style.top = `${t + partPosition.y}px`;
     }
 
-    if (dx > 1 && dy > 1) set (dx, dy, null, null);
-    if (dx < 1 && dy > 1) set (-dx, dy, dx, null);
-    if (dx > 1 && dy < 1) set (dx, -dy, null, dy);
+    if (dx > 1 && dy > 1) set (dx, dy, 0, 0);
+    if (dx < 1 && dy > 1) set (-dx, dy, dx, 0);
+    if (dx > 1 && dy < 1) set (dx, -dy, 0, dy);
     if (dx < 1 && dy < 1) set (-dx, -dy, dx, dy);
-
-    //let dx = currentPosition.x - parseInt(newpart.style.left.slice(0, -2));
-    //let dy = currentPosition.y - parseInt(newpart.style.top.slice(0, -2));
-    //width = width < 1 ? 1 : width;
-    //height = height < 1 ? 1 : height;
-
 
     currentPosition = {x: evt.clientX, y: evt.clientY};
 }
 function handlePartUp (evt) {
+    newpart.addEventListener("mousedown", onMouseDown, {passive: false, useCapture: false}); //funny
     document.removeEventListener("mousemove", handlePartMove);
     document.removeEventListener("mouseup", handlePartUp);
 }
