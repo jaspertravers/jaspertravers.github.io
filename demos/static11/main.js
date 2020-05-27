@@ -129,27 +129,57 @@ Load loads all tabs from local storage,
 If you accidentally deleted, Load will restore one mistaken deleted tab.
 
 Hit Build/Run to see the line above painted to the canvas
+
+check out tab "4: button" for self-hosting ideas
+check out tab "5: Lissajous" for more than just one line
 */`
   let name1 = "1: first";
-  let code1 = `line(10,10,100,100,ctx);`
+  let code1 = `line(10,20,100,110,ctx);`
   let name2 = "2: clear";
   let code2 = `ctx.fillStyle = '#ffffff';\nctx.fillRect(0, 0, 800, 800);`
-  let name3 = "3: line";
-  let code3 = `line(10,20,100,110,ctx); //offset line`
   let name4 = "4: button";
   let code4 = `let buttons = document.getElementById("buttons");\nlet clear = document.createElement("button");\nclear.innerHTML = "Clear";\nclear.setAttribute("id", "clearButton");\nclear.addEventListener("click", () => {\n  ctx.fillStyle = "#ffffff";\n  ctx.fillRect(0, 0, 800, 600);\n});\n\nbuttons.appendChild(clear)\n`
 ode3 = `line(10,20,100,110,ctx); //offset line`
-  let inst0 = {name: name0, code: code0}
-  let inst1 = {name: name1, code: code1}
-  let inst2 = {name: name2, code: code2}
-  let inst3 = {name: name3, code: code3}
-  let inst4 = {name: name4, code: code4}
+  let name5 = "5: Lissajous";
+  let code5 = `/* Lissajous figures */
+
+/* non-integer values for the X and Y frequency yield interesting results 
+
+	 try commenting/uncommenting lines 9-12 or writing your own.
+	 ctrl-enter to run, or the button below for "Build/Run"
+	 <--- if you run the cell in tab 4, over there <---
+	 	you will get a clear button besides load, that clears the canvas
+*/
+
+ctx.fillStyle = "#000000";
+
+//liss(2, 3, 0, 100, 1000);
+liss(2, 3.0001, 0, 100, 1000);
+liss(2.0001, 3.0001, 0, 100, 1000);
+
+function liss (freqX, freqY, phi, scale, points) {
+	let xv = (angle, freqX, phi, scale) => 
+	Math.sin(angle * freqX + (phi * Math.PI / 180)) * scale;
+	let yv = (angle, freqY, scale) => Math.sin(angle * freqY) * scale;
+	
+	let x, y;
+	for (let i = 0; i < points; i += 1) {
+		x = xv (i, freqX, phi, scale) + canvas.width / 2;
+		y = yv (i, freqY, scale) + canvas.height / 2;
+		point(x, y, ctx);
+	}
+}`
+  let inst0 = {name: name0, code: code0};
+  let inst1 = {name: name1, code: code1};
+  let inst2 = {name: name2, code: code2};
+  let inst4 = {name: name4, code: code4};
+  let inst5 = {name: name5, code: code5};
 
   state.instances.push(initializeInstance(inst0));
   state.instances.push(initializeInstance(inst1));
   state.instances.push(initializeInstance(inst2));
-  state.instances.push(initializeInstance(inst3));
   state.instances.push(initializeInstance(inst4));
+  state.instances.push(initializeInstance(inst5));
 
   engine(state);
 
@@ -239,6 +269,7 @@ function build() {
     point,
     sleep,
     Math,
+    canvas: state.canvas,
   };
   if (instance.runner) delete instance.runner;
   instance.runner = runner;
