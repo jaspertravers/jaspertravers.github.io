@@ -169,17 +169,26 @@ function liss (freqX, freqY, phi, scale, points) {
 		point(x, y, ctx);
 	}
 }`
+
+  let name6 = "6: Control";
+  let code6 = `/* controlling while true 
+  hit run, then hit pause. Page is still live */
+while(1) {
+  point(Math.random() * 600, Math.random() * 600, ctx);
+}`;
   let inst0 = {name: name0, code: code0};
   let inst1 = {name: name1, code: code1};
   let inst2 = {name: name2, code: code2};
   let inst4 = {name: name4, code: code4};
   let inst5 = {name: name5, code: code5};
+  let inst6 = {name: name6, code: code6};
 
   state.instances.push(initializeInstance(inst0));
   state.instances.push(initializeInstance(inst1));
   state.instances.push(initializeInstance(inst2));
   state.instances.push(initializeInstance(inst4));
   state.instances.push(initializeInstance(inst5));
+  state.instances.push(initializeInstance(inst6));
 
   engine(state);
 
