@@ -1,0 +1,30 @@
+*{
+  /*box-sizing: border-box;*/
+  padding: 0;
+  margin: 0;
+}
+main, section {
+    display: block;
+    position: absolute;
+}
+div .part {
+    position: absolute;
+}
+canvas {
+    /*position: absolute;*/
+}
+
+.CodeMirror {
+    /* height: auto; */
+    height: 100%;
+    /*  width: 720px; */
+    width: 100%;
+    font-size: 14px;
+    border: 1px dashed #282828;
+}
+
+.CodeMirror-scroll {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+

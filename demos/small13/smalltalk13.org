@@ -1,0 +1,126 @@
+#+TITLE: Smalltalk13
+
+https://web.archive.org/web/20080828162848/http://www.hunlock.com/blogs/Totally_Pwn_CSS_with_Javascript
+
+copying the smalltalk browser
+mine will be:
+
+| editor  |       | canvas  |
+| library | block | command |
+
+editor : codemirror
+canvas : canvas
+
+library: a list of lists
+a selection of the list in library fills the =block= box with a list of block contents
+block: a list of separate chunks to be joined when executed
+command: buttons/command line/ etc
+
+#+BEGIN_SRC js
+let state = {
+    libraries: [{
+        name: <string>,
+        blocks: [{
+            name: <string>,
+            content: <string>
+        }]
+    }]
+}
+
+let ex_state = {
+    libraries: [
+        {
+            name: "lib1",
+            blocks: [
+                {
+                    name: "blk1",
+                    content: "/* blk 1 */"
+                },
+                {
+                    name: "blk2",
+                    content: "/* blk 2 */"
+                }
+            ]
+        },
+        {
+            name: "lib2",
+            blocks: [
+                {
+                    name: "blk2.1",
+                    content: "/* lib 2 blk 1"
+                },
+                {
+                    name: "blk2.2",
+                    content: "/* lib 2 blk 1"
+                }
+            ]
+        }
+    ]
+}
+#+END_SRC
+
+#+BEGIN_SRC js
+libraries {
+    name: string
+    blocks {
+        name: string
+        content:
+    }
+}
+#+END_SRC
+
+#+RESULTS:
+
+I liked ~engine~, I think it simplified the logic in the application.
+Can I make it modular?
+
+UI
+State
+
+State -> UI
+
+state.libraries = {};
+state.codeMirror = CodeMirror(...args);
+state.canvas = canvasNode
+state.ctx = ctx;
+state.current = {library: string, block: string}
+
+some part of the state needs to represent the current view
+
+state.currentView = [name, name]
+
+where do I put the functionality of changing state? MVC?
+
+model: dynamic state
+view: UI
+controller:
+
+| model      | dynamic state                                              |
+| view       | representation of state (user interface)                   |
+| controller | accepts input and redirects to model and/or view as needed |
+
+| model      | state                            |
+| view       | UI                               |
+| controller | all listeners? hotkeys? guess so |
+
+right now state transformation is going to be driven through the name of the active library and active block
+as a tuple [name, name]
+
+state transforming logic:
+- init first time visitor, set state
+- load from storage, set state
+- view editor [name, name] tuple
+
+all transforms are done through ~viewState(target)~
+
+will eventually need to address duplication by preventing it or uuids. uuids would be overkill
+could do it through an nvalt style navigator where unmatched pages are how you create one
+
+Model: state; user-entered data. In this "ide" context, code
+View: representation of state; interface. In this context, what's visible in the editor
+Controller: redirects input to model and/or view as needed.
+
+* TODOS
+- canvas and editor are a few px different heights
+- setupBrowser's 3 nodes width's are not setup right. Probably going to be a style I can set wrt flexbox on the parent element currently all 33% of viewport width...
+- refactor to have save/load always act correctly
