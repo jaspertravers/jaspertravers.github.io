@@ -138,8 +138,18 @@ check out tab "5: Lissajous" for more than just one line
   let name2 = "2: clear";
   let code2 = `ctx.fillStyle = '#ffffff';\nctx.fillRect(0, 0, 800, 800);`
   let name4 = "4: button";
-  let code4 = `let buttons = document.getElementById("buttons");\nlet clear = document.createElement("button");\nclear.innerHTML = "Clear";\nclear.setAttribute("id", "clearButton");\nclear.addEventListener("click", () => {\n  ctx.fillStyle = "#ffffff";\n  ctx.fillRect(0, 0, 800, 600);\n});\n\nbuttons.appendChild(clear)\n`
-ode3 = `line(10,20,100,110,ctx); //offset line`
+  let code4 = `let buttons = document.getElementById("buttons");
+let clear = document.createElement("button");
+clear.innerHTML = "Clear";
+clear.setAttribute("id", "clearButton");
+clear.addEventListener("click", () => {
+  let stored = ctx.fillStyle; //push
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, 800, 600);
+  ctx.fillStyle = stored; //pop
+});
+
+buttons.appendChild(clear)`
   let name5 = "5: Lissajous";
   let code5 = `/* Lissajous figures */
 
@@ -151,11 +161,15 @@ ode3 = `line(10,20,100,110,ctx); //offset line`
 	 	you will get a clear button besides load, that clears the canvas
 */
 
+ctx.fillStyle = '#ffffff';
+ctx.fillRect(0, 0, 800, 800); //clears canvas, comment out to overlay
+
 ctx.fillStyle = "#000000";
 
+liss(1, 1.0005, 0, 100, 2500);
 //liss(2, 3, 0, 100, 1000);
-liss(2, 3.0001, 0, 100, 1000);
-liss(2.0001, 3.0001, 0, 100, 1000);
+//liss(2, 3.0001, 0, 100, 1000);
+//liss(2.0001, 3.0001, 0, 100, 1000);
 
 function liss (freqX, freqY, phi, scale, points) {
 	let xv = (angle, freqX, phi, scale) => 
@@ -176,12 +190,38 @@ function liss (freqX, freqY, phi, scale, points) {
 while(1) {
   point(Math.random() * 600, Math.random() * 600, ctx);
 }`;
+
+  let name7 = "7: Liss2"
+  let code7 = `/* alternate Lissajous implementation */
+ctx.fillStyle = '#ffffff';
+ctx.fillRect(0, 0, 800, 800);
+
+
+ctx.fillStyle = "#000000";
+
+liss(150.1, 450.15, 0, 100, 1000);
+//liss(7, 3, 0, 100, 1000);
+//liss(2, 3, 0, 100, 1000);
+
+function liss (freqX, freqY, phi, scale, points) {
+	let xv = (angle, freqX, phi, scale) => 
+	Math.sin(angle * freqX + (phi * Math.PI / 180)) * scale;
+	let yv = (angle, freqY, scale) => Math.sin(angle * freqY) * scale;
+	
+	let x, y;
+	for (let i = 0; i < Math.PI * 2; i += (Math.PI / points)) {
+		x = xv (i, freqX, phi, scale) + canvas.width / 2;
+		y = yv (i, freqY, scale) + canvas.height / 2;
+		point(x, y, ctx);
+	}
+}`
   let inst0 = {name: name0, code: code0};
   let inst1 = {name: name1, code: code1};
   let inst2 = {name: name2, code: code2};
   let inst4 = {name: name4, code: code4};
   let inst5 = {name: name5, code: code5};
   let inst6 = {name: name6, code: code6};
+  let inst7 = {name: name7, code: code7};
 
   state.instances.push(initializeInstance(inst0));
   state.instances.push(initializeInstance(inst1));
@@ -189,6 +229,7 @@ while(1) {
   state.instances.push(initializeInstance(inst4));
   state.instances.push(initializeInstance(inst5));
   state.instances.push(initializeInstance(inst6));
+  state.instances.push(initializeInstance(inst7));
 
   engine(state);
 
