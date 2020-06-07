@@ -283,11 +283,21 @@ function firstInit() {
       blocks: [
         {
           name: "fst blk",
-          content: "let exampleLine = line(10, 10, 100, 100, ctx)"
+          content: `function line (x1, y1, x2, y2, ctx) {
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.stroke();
+}
+
+let x1 = 10;
+let y1 = 10;
+let x2 = 100;
+let y2 = 100;`
         },
         {
           name: "snd blk",
-          content: "exampleLine();"
+          content: "line(x1, y1, x2, y2, ctx);"
         }
       ]
     },
@@ -296,11 +306,17 @@ function firstInit() {
       blocks: [
         {
           name: "init blk",
-          content: "let y = 40;"
+          content: `function point(x, y, ctx) {
+  ctx.beginPath();
+  ctx.rect(x, y, 1, 1);
+  ctx.fill();
+}
+
+let y = 40;`
         },
         {
           name: "use blk",
-          content: "for (let x = 10; x < 110; x += 2)\n\tpoint(x, y, ctx)\n}"
+          content: "for (let x = 10; x < 110; x += 2) {\n\tpoint(x, y, ctx)\n}"
         }
       ]
     }
