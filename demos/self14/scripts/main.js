@@ -17,28 +17,30 @@ let main = document.createElement("main");
 main.id = "main";
 document.body.appendChild(main);
 
-let cmNode = document.createElement("div");
-cmNode.id = "cmNode";
-main.appendChild(cmNode);
+let CodeMirrorNode = document.createElement("div");
+CodeMirrorNode.id = "CodeMirrorNode";
+main.appendChild(CodeMirrorNode);
 
-const cm_opts = {
+const CMOPTS = {
   lineNumbers: true,
   lineWrapping: true,
   indentWithTabs: true,
   indentUnit: 2,
   tabSize: 2,
-  mode: "javascript",
+  mode: "javascript"
 };
 
-let codemirror = CodeMirror(cmNode, cm_opts);
+let codemirror = CodeMirror(CodeMirrorNode, CMOPTS);
 
-let output = document.createElement("div");
-output.id = "output";
-main.appendChild(output);
+let CMBodyNode = document.getElementsByClassName("CodeMirror")[0];
+CMBodyNode.style.height = "100%";
+CMBodyNode.style.width = "720px";
+CMBodyNode.style.fontSize = "14px";
+CMBodyNode.style.border = "1px dashed #282828";
 
 codemirror.setValue(value); //this content is the initialvalue
 
-// execution, aka "the only hook" //
+// execution //
 
 window.onkeydown = onKeyDown;
 
