@@ -1,18 +1,15 @@
 window.addEventListener("load", onLoad);
 
 function onLoad() {
-  initvalue =
+  value =
 `/* this is this */
 
 //allows re-running
 if (main) {
-	document.body.removeChild(main);
-  try {
-    window.removeEventListener("keydown", onKeyDown); //here
-    console.log("removed listener, check elements tab > listeners");
-  } catch (e) {
-    console.log(e)
+  if (codemirror) {
+    value = codemirror.getValue();
   }
+	document.body.removeChild(main);
 }
 
 //start here
@@ -39,11 +36,11 @@ let output = document.createElement("div");
 output.id = "output";
 main.appendChild(output);
 
-codemirror.setValue(initvalue); //this content is the initialvalue
+codemirror.setValue(value); //this content is the initialvalue
 
 // execution, aka "the only hook" //
 
-window.addEventListener("keydown", onKeyDown);
+window.onkeydown = onKeyDown;
 
 function onKeyDown(evt) {
   if (evt.ctrlKey && evt.key == "Enter") {
@@ -58,8 +55,8 @@ function run(task) {
 }
 `; //end of init string template
 
-  let runner = stopify.stopifyLocally(initvalue);
+  let runner = stopify.stopifyLocally(value);
   runner.g = this; //hmmm
-  runner.initvalue = initvalue;
-  runner.run(result => console.log(result));
+  runner.value = value; //odd requirement, but works
+  runner.run(result => console.log(result)); //can go back to ignoring this probably
 }
